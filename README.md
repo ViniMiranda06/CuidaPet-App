@@ -1,6 +1,6 @@
 # CuidaPet
 
-O CuidaPet tem como intuito auxiliar projetos atuam no resgate, tratamento e adoção de animais. A proposta visa oferecer uma solução tecnológica acessível, funcional e organizada, capaz de centralizar informações importantes sobre animais acolhidos e assim otimizar o fluxo de gerenciamento dentro dessas organizações.
+O CuidaPet tem como intuito auxiliar projetos atuam no resgate, tratamento e adoção de animais. Além disso, Serve como Facilitador para a denúncia sobre a animais abandonados ou encontrados sob situação de maus tratos. A proposta visa oferecer uma solução tecnológica acessível, funcional e organizada, capaz de centralizar informações importantes sobre animais acolhidos e assim otimizar o fluxo de gerenciamento dentro dessas organizações.
 
 ## 🧑‍💻 Fluxograma do Projeto
 Disponíveis no seguinte link do Google Drive:
