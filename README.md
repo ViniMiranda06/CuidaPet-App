@@ -8,26 +8,37 @@ Disponíveis no seguinte link do Google Drive:
         
 ## 🚀 Tecnologia Utilizada
 - Python 3.12.4
-- TKInter (Interface Gráfica)
- ### 📚 Bibliotecas:
+
+ ## 📚 Bibliotecas:
 
   ***JSON*** (Uso de listas e dicionários, salvar e carregar os dados em .json)
   
   ***Pillow*** (manipulação de imagens)
+
+  ***TKInter*** (Interface Gráfica)
+
+  ### ⚙️ Módulos e para que servem
+
+| Módulo         | Função no Projeto                                                                 |
+|----------------|------------------------------------------------------------------------------------|
+| `os`           | Limpa o terminal com `os.system('cls' ou 'clear')` para manter o visual limpo     |
+| `random`       | Gera códigos aleatórios de verificação de 6 dígitos para autenticação              |
+| `smtplib`      | Conecta ao servidor SMTP do Gmail para envio de emails                            |
+| `email.message.EmailMessage` | Cria e formata a mensagem de email enviada ao usuário               |
   
 ### 💻 Estruturas utilizadas:
 
- ***if*** (executa um bloco se uma condição for verdadeira.)
+ ***if*** = executa um bloco se uma condição for verdadeira
   
- ***elif*** (executa outra condição se a anterior for falsa.)
+ ***elif*** = executa outra condição se a anterior for falsa
  
- ***else*** (executa caso todas as condições anteriores sejam falsas.)
+ ***else*** = executa caso todas as condições anteriores sejam falsas
  
- ***while*** (repete um bloco enquanto a condição for verdadeira.)
+ ***while*** = repete um bloco enquanto a condição for verdadeira
  
- ***for*** (percorre itens de uma sequência (lista, string, etc.).)
+ ***for*** = percorre itens de uma sequência (lista, string, etc)
  
- ***try*** (tenta executar um bloco e trata erros com except se algo falhar.)
+ ***try*** = tenta executar um bloco e trata erros com except se algo falhar
 
 ## 🔧 Instalação e Execução
 
