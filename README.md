@@ -14,10 +14,15 @@ Disponíveis no seguinte link do Google Drive:
         Pillow (manipulação de imagens)
 - Estruturas utilizadas:
  ***if*** (executa um bloco se uma condição for verdadeira.)
+  
  ***elif*** (executa outra condição se a anterior for falsa.)
+ 
  ***else*** (executa caso todas as condições anteriores sejam falsas.)
+ 
  ***while*** (repete um bloco enquanto a condição for verdadeira.)
+ 
  ***for*** (percorre itens de uma sequência (lista, string, etc.).)
+ 
  ***try*** (tenta executar um bloco e trata erros com except se algo falhar.)
 
 ## 🔧 Instalação e Execução
