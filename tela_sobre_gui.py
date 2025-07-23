@@ -24,17 +24,17 @@ def salvar_feedback(email, texto):
 
 # 🖼️ Tela principal de "Sobre nós"
 def criar_tela_sobre(root, email, voltar_callback):
-    """Creates a 'Sobre' screen with buttons for navigating mission, contact, and returning to menu.
-    Parameters:
-        - root (tk.Tk or tk.Frame): The parent widget where this frame will be placed.
-        - email (str): The email associated with the user session, used in mission and feedback.
-        - voltar_callback (callable): Function to be called when the 'Voltar' button is clicked, usually to return to a previous menu.
-    Returns:
-        - tk.Frame: A frame containing the 'Sobre' interface for integration into the GUI.
-    Processing Logic:
-        - Configures buttons with specific text and dimensions.
-        - Packs buttons with appropriate spacing in the frame.
-        - Sets button commands using lambda functions to maintain user context and provide navigation."""
+    """Cria uma tela “Sobre” com botões para navegar pela missão, contato e retornar ao menu.
+    Parâmetros:
+- root (tk.Tk ou tk.Frame): O widget pai onde este quadro será colocado.
+- email (str): O e-mail associado à sessão do usuário, usado na missão e no feedback.
+- voltar_callback (callable): Função a ser chamada quando o botão “Voltar” for clicado, geralmente para retornar a um menu anterior.
+    Retorna:
+- tk.Frame: Um quadro contendo a interface “Sobre” para integração na GUI.
+Lógica de processamento:
+- Configura botões com texto e dimensões específicos.
+- Empacota botões com espaçamento apropriado no quadro.
+- Define comandos de botão usando funções lambda para manter o contexto do usuário e fornecer navegação."""
     frame = tk.Frame(root, bg=COR_FUNDO)
 
     container = tk.Frame(frame, bg=COR_FUNDO)
@@ -59,16 +59,16 @@ def criar_tela_sobre(root, email, voltar_callback):
 
 # 📄 Tela com texto da missão
 def abrir_missao(root, email, voltar_callback):
-    """Display a mission statement and contact information in a GUI window.
-    Parameters:
-        - root (tk.Widget): The root widget where the GUI frame will be placed.
-        - email (str): The contact email address, though not directly manipulated within this function.
-        - voltar_callback (function): Callback function to handle the "Voltar" button action.
-    Returns:
-        - None
-    Processing Logic:
-        - Displays a text message about the project's mission in a Tkinter Frame.
-        - Provides a "Voltar" button that triggers the 'voltar_callback' to navigate back to the menu."""
+    """Exibe uma declaração de missão e informações de contato em uma janela GUI.
+Parâmetros:
+- root (tk.Widget): O widget raiz onde o quadro GUI será colocado.
+- email (str): O endereço de e-mail de contato, embora não seja manipulado diretamente dentro desta função.
+- voltar_callback (função): Função de retorno de chamada para lidar com a ação do botão “Voltar”.
+    Retorna:
+- Nenhum
+Lógica de processamento:
+- Exibe uma mensagem de texto sobre a missão do projeto em um quadro Tkinter.
+- Fornece um botão “Voltar” que aciona o ‘voltar_callback’ para navegar de volta ao menu."""
     frame = tk.Frame(root, bg=COR_FUNDO)
 
     container = tk.Frame(frame, bg=COR_FUNDO)
@@ -97,18 +97,18 @@ def abrir_missao(root, email, voltar_callback):
 
 # 📣 Tela de envio de feedback
 def abrir_feedback(root, email, voltar_callback):
-    """Open a feedback interface within a Tkinter application allowing users to send suggestions or questions.
-    Parameters:
-        - root (tk.Tk): The root window where the feedback frame will be placed.
-        - email (str): The email address associated with the feedback submission.
-        - voltar_callback (function): A callback function to navigate back to the previous menu.
-    Returns:
-        None
-    Processing Logic:
-        - A text area is provided for users to input their feedback.
-        - The 'Confirmar' button sends the feedback if the text area contains text.
-        - A message box informs the user whether the feedback sending was successful or warns if no text was entered.
-        - The 'Voltar' button navigates the user back to a menu using the provided callback function."""
+    """Abre uma interface de feedback dentro de um aplicativo Tkinter, permitindo que os usuários enviem sugestões ou perguntas.
+Parâmetros:
+- root (tk.Tk): A janela raiz onde o quadro de feedback será colocado.
+- email (str): O endereço de e-mail associado ao envio do feedback.
+- voltar_callback (função): Uma função de retorno de chamada para navegar de volta ao menu anterior.
+    Retorna:
+Nenhum
+Lógica de processamento:
+- Uma área de texto é fornecida para os usuários inserirem seus comentários.
+        - O botão “Confirmar” envia o feedback se a área de texto contiver texto.
+- Uma caixa de mensagem informa ao usuário se o envio do feedback foi bem-sucedido ou avisa se nenhum texto foi inserido.
+- O botão “Voltar” navega o usuário de volta para um menu usando a função de retorno fornecida."""
     frame = tk.Frame(root, bg=COR_FUNDO)
 
     container = tk.Frame(frame, bg=COR_FUNDO)
@@ -120,17 +120,17 @@ def abrir_feedback(root, email, voltar_callback):
     campo.pack(pady=10)
 
     def enviar():
-        """Send user feedback after validation.
-        Parameters:
-            - None
-        Returns:
-            - None
-        Processing Logic:
-            - Retrieves text input starting from position "1.0" to "end" and removes surrounding whitespace.
-            - Validates that the text is not empty before proceeding with feedback submission.
-            - Saves the feedback using the 'salvar_feedback' function with the user email and text.
-            - Displays a success message on successful feedback submission.
-            - Redirects the user back to the menu using 'voltar_callback'. If the text is empty, it shows a warning message."""
+        """Envia o feedback do usuário após a validação.
+Parâmetros:
+- Nenhum
+Retorna:
+- Nenhum
+Lógica de processamento:
+- Recupera a entrada de texto a partir da posição “1.0” até o “fim” e remove os espaços em branco ao redor.
+- Valida se o texto não está vazio antes de prosseguir com o envio do feedback.
+            - Salva o feedback usando a função “salvar_feedback” com o e-mail e o texto do usuário.
+- Exibe uma mensagem de sucesso quando o envio do feedback é bem-sucedido.
+- Redireciona o usuário de volta ao menu usando “voltar_callback”. Se o texto estiver vazio, exibe uma mensagem de aviso."""
         texto = campo.get("1.0", "end").strip()
         if texto:
             salvar_feedback(email, texto)
