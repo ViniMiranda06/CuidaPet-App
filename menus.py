@@ -21,7 +21,7 @@ Lógica de processamento:
         self.pedidos = GerenciadorPedidos()
 
     def cadastrar_usuario(self):
-        """Regista um novo usuário com os detalhes fornecidos, caso o e-mail ainda não esteja em uso.
+        """Registra um novo usuário com os detalhes fornecidos, caso o e-mail ainda não esteja em uso.
 Parâmetros:
 - Nenhum
 Retorna:
