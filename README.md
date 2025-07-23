@@ -54,11 +54,11 @@ main.py
 ⚠️ Atenção: O acesso às funcionalidades administrativas é restrito e só pode ser feito por meio de um recurso secreto acessado após o login.
 
 ## 🔐 Como acessar o menu administrativo:
-1. Faça login normalmente como qualquer usuário.
+para fazer login na sessão ADM é necessário atribuir ao cadastrado o papel de Administrador
 
-2. No Menu Principal, digite 1703 como opção.
-
-3. Isso abrirá o Menu Administrativo, exclusivo para a equipe responsável.
+1- dirija-se a usuarios.json
+2- localize a atribuição do usuário e mude-a
+3- entre novamente.
 
 ## 🐾 Gestão de Animais
 -Cadastro de novos animais
@@ -70,6 +70,9 @@ main.py
     Após os pedidos serem enviados pelos usuários, o administrador poderá visualizá-los.
 
 -Aprovação ou rejeição das solicitações enviadas por usuários
+
+📄 gestão de denúncias
+-Visualização de denúncias que podem ser realizadas pelo usuário
 
 ## 👨‍💻 Desenvolvedores
 - Vinícius De Oliveira
