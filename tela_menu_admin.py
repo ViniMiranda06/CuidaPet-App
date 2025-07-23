@@ -5,6 +5,17 @@ COR_FUNDO = "#F4EDE3"    # Bege claro de fundo
 COR_MARROM = "#BFA6A0"   # Marrom claro para botões
 
 def criar_tela_menu_admin(root, email, mostrar_tela_callback):
+    """Cria uma interface de menu de administração na janela raiz especificada.
+Parâmetros:
+- root (tk.Tk): A janela raiz onde a interface do menu será anexada.
+- email (str): O endereço de e-mail do usuário administrador.
+- mostrar_tela_callback (função): Uma função de retorno de chamada para exibir telas diferentes.
+    Retorna:
+- tk.Frame: Um quadro contêiner com a interface do menu de administração.
+Lógica de processamento:
+- Inicializa uma barra lateral com botões para diferentes funções de administração.
+- Os botões são configurados com uma função de retorno de chamada para exibir telas de administração específicas.
+- A cor do botão muda para vermelho para a opção “Sair”."""
     frame_menu = tk.Frame(root, bg=COR_FUNDO)
 
     # Barra lateral de botões

@@ -17,6 +17,18 @@ def inicializar_arquivo():
 
 # 📥 Função para salvar denúncia
 def salvar_denuncia(email, nome, tipo, texto):
+    """Saves a complaint to the database.
+    Parameters:
+        - email (str): The email address of the person filing the complaint.
+        - nome (str): The name of the person filing the complaint.
+        - tipo (str): The type of complaint being filed.
+        - texto (str): The detailed text of the complaint.
+    Returns:
+        - None: This function does not return a value.
+    Processing Logic:
+        - Initializes the JSON file if it does not exist.
+        - Determines the new ID for the complaint by finding the existing maximum ID and adding 1.
+        - Adds the new complaint to the list of existing complaints and saves them to the file."""
     inicializar_arquivo()
     with open(CAMINHO_DB, "r", encoding="utf-8") as f:
         denuncias = json.load(f)
@@ -44,6 +56,18 @@ def buscar_denuncia(email):
 
 # 📝 Tela de escrever denúncia
 def abrir_tela_escrever(root, email, voltar_callback):
+    """Creates and displays a complaint submission interface within a given window.
+    Parameters:
+        - root (tk.Tk): The main window where the complaint submission interface will be placed.
+        - email (str): The email address of the user, used to retrieve user data.
+        - voltar_callback (callable): A function to execute when returning to the previous menu.
+    Returns:
+        - None: This function does not return a value; it configures the interface in the given window.
+    Processing Logic:
+        - The function configures a text input area for specifying complaints.
+        - A complaint type is selected via radio buttons with preset options.
+        - On form submission, it saves the complaint if the description is provided and displays a confirmation message.
+        - Handles empty description cases with a warning message."""
     frame = tk.Frame(root, bg=COR_FUNDO)
 
     tk.Label(frame, text="Escreva sua denúncia abaixo:", font=("Arial", 14), bg=COR_FUNDO).pack(pady=10)
@@ -75,6 +99,22 @@ def abrir_tela_escrever(root, email, voltar_callback):
 
     # 🚀 Função de envio
     def enviar():
+        """Handles the submission and validation of a complaint form in a GUI application.
+        Parameters:
+            - campo_texto (Text widget): Source of the complaint description.
+            - tipo_var (StringVar): Selected type of complaint from GUI.
+            - email (str): Email used to identify the user.
+            - buscar_dados_usuario (function): Function to retrieve user data given an email.
+            - salvar_denuncia (function): Function to save complaint data.
+            - messagebox (module): Interface for displaying messages to the user.
+            - voltar_callback (function): Callback function to navigate back to the menu.
+        Returns:
+            - None: The function does not return a value. It updates the GUI state based on user input.
+        Processing Logic:
+            - Retrieves and trims the complaint description text to ensure it isn't empty.
+            - Acquires user name through the provided email for proper complaint tracking.
+            - Displays informational or warning messages based on the completeness of the input.
+            - Saves the complaint only if the description is not empty."""
         descricao = campo_texto.get("1.0", "end").strip()
         tipo = tipo_var.get()
         nome = buscar_dados_usuario(email)["nome"]
@@ -98,6 +138,17 @@ def abrir_tela_escrever(root, email, voltar_callback):
 
 # 📖 Tela de visualizar denúncias
 def abrir_tela_ver(root, email, voltar_callback):
+    """Displays a screen showing reports associated with a given email.
+    Parameters:
+        - root (Tkinter Frame): The root frame where the display should be placed.
+        - email (str): The email address used to fetch reports.
+        - voltar_callback (function): Callback function to be invoked when the user wants to navigate back.
+    Returns:
+        - None
+    Processing Logic:
+        - Uses the email parameter to fetch associated reports.
+        - If reports exist, displays them; otherwise, informs the user that no reports are available.
+        - Contains a button to return to the main menu using the provided callback."""
     relatos = buscar_denuncia(email)
     frame = tk.Frame(root, bg=COR_FUNDO)
     container = tk.Frame(frame, bg=COR_FUNDO)
@@ -119,6 +170,16 @@ def abrir_tela_ver(root, email, voltar_callback):
 
 # 🧾 Tela principal de denúncias
 def criar_tela_denuncia(root, email, voltar_callback):
+    """Create a report screen interface.
+    Parameters:
+        - root (tk.Tk): The root window where the interface will be attached.
+        - email (str): The email address of the user, used for contextual operations.
+        - voltar_callback (function): A callback function to execute when the 'Voltar' button is clicked.
+    Returns:
+        - tk.Frame: The frame containing the interface elements.
+    Processing Logic:
+        - Initializes a frame with specific background color and places it at the center of the root window.
+        - Adds a label and three buttons to the interface, connecting them to appropriate command functions for different actions."""
     frame = tk.Frame(root, bg=COR_FUNDO)
     container = tk.Frame(frame, bg=COR_FUNDO)
     container.place(relx=0.5, rely=0.5, anchor="center")

@@ -4,6 +4,16 @@ import os
 CAMINHO_PEDIDOS = "pedidos.json"
 
 class GerenciadorPedidos:
+    """
+    A classe GerenciadorPedidos gerencia uma coleção de pedidos, lidando com persistência e validação.
+Parâmetros:
+- Nenhum (a inicialização não requer parâmetros).
+Lógica de processamento:
+- Inicializa carregando os pedidos existentes de um arquivo JSON; retorna uma lista vazia se o arquivo estiver ausente.
+- Salva os pedidos de volta em um arquivo JSON, garantindo que os caracteres Unicode sejam preservados.
+        - Valida a exclusividade verificando atributos específicos antes de adicionar um novo pedido.
+- Fornece métodos para verificar a existência e listar pedidos específicos de um usuário.
+    """
     def __init__(self):
         self.pedidos = self.carregar_pedidos()
 
@@ -18,6 +28,15 @@ class GerenciadorPedidos:
             json.dump(self.pedidos, f, indent=4, ensure_ascii=False)
 
     def adicionar_pedido(self, pedido):
+        """Adiciona um novo pedido à lista armazenada no formato JSON, caso ainda não exista.
+Parâmetros:
+- pedido (Pedido): Um objeto que representa os detalhes do pedido a ser adicionado.
+Retorna:
+- bool: Retorna True se o pedido foi adicionado com sucesso, False se o pedido já existe.
+        Lógica de processamento:
+- Carrega os pedidos existentes de um arquivo JSON.
+- Verifica se algum pedido existente corresponde ao e-mail, animal_id e tipo presentes no objeto pedido fornecido.
+- Acrescenta o novo pedido à lista e o salva somente se ele não corresponder a nenhum pedido existente."""
         self.pedidos = self.carregar_pedidos()  # 🔄 Atualiza a lista com o que está no JSON
 
         for p in self.pedidos:

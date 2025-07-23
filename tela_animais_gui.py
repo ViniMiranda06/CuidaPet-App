@@ -9,6 +9,18 @@ COR_VERDE = "#A8D5BA"
 menu = MenuSistema()
 
 def criar_tela_animais(root, tipo, email, mostrar_tela_callback):
+    """Cria um quadro exibindo opções de adoção ou tratamento de animais.
+Parâmetros:
+- raiz (tk.Tk ou tk.Widget): O widget ou janela raiz onde o quadro será adicionado.
+        - tipo (str): Tipo de operação a ser realizada, “adocão” para adoção ou outro valor para animais em tratamento.
+- email (str): O endereço de e-mail do usuário, usado para criar uma solicitação de adoção ou tratamento de um animal.
+- mostrar_tela_callback (callable): Uma função de retorno de chamada a ser invocada ao navegar de volta para outra tela.
+    Retorna:
+- tk.Frame: Um quadro contendo informações sobre o animal e opções para solicitar ações.
+Lógica de processamento:
+- Cria cartões para cada animal e os exibe no quadro.
+- Os botões nos cartões permitem que os usuários solicitem animais, acionando caixas de mensagem em caso de sucesso ou falha da solicitação.
+- Um título é exibido com base no tipo de operação (“adocão” ou tratamento)."""
     frame_animais = tk.Frame(root, bg=COR_FUNDO)
 
     # Título

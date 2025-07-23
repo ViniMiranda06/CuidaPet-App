@@ -26,6 +26,17 @@ def salvar_animais_tratamento(lista):
         json.dump(lista, f, indent=2, ensure_ascii=False)
 
 def criar_tela_mover_tratamento(root, voltar_callback):
+    """Cria uma interface tkinter para gerenciar as atribuições de tratamento dos animais. 
+    Parâmetros:
+        - root (tk.Tk): A janela raiz pai para anexar este quadro.
+        - voltar_callback (Callable[[str], None]): Função de retorno de chamada a ser executada ao retornar ao menu anterior.
+    Retorna:
+- tk.Frame: Um quadro tkinter contendo a interface para selecionar e mover animais para tratamento.
+    Lógica de processamento:
+- A função recupera a lista de animais disponíveis para adoção e aqueles que já estão em tratamento.
+- Ela verifica se há entradas duplicadas na lista de tratamento e avisa o usuário se um animal já foi movido.
+- Ao mover um animal para tratamento, ela atualiza a lista de tratamento e salva as alterações.
+- Fornece um botão para voltar à tela anterior usando a função de retorno de chamada especificada."""
     frame = tk.Frame(root, bg=COR_FUNDO)
     container = tk.Frame(frame, bg=COR_FUNDO)
     container.place(relx=0.5, rely=0.5, anchor="center")

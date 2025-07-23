@@ -18,6 +18,16 @@ def salvar_denuncias(lista):
         json.dump(lista, f, indent=2, ensure_ascii=False)
 
 def criar_tela_adm_denuncias(root, voltar_callback):
+    """Create the administrator screen for viewing and managing received complaints.
+    Parameters:
+        - root (tk.Tk or tk.Frame): The root widget where the admin complaints screen will be placed.
+        - voltar_callback (function): Callback function to handle 'back' navigation, accepting a screen identifier.
+    Returns:
+        - tk.Frame: The frame containing the administrator screen for complaints.
+    Processing Logic:
+        - Reads and displays a list of complaints fetched from a data source.
+        - Each complaint is presented with options to view details or delete.
+        - Provides a 'Back' button to return to the administrator menu."""
     frame = tk.Frame(root, bg=COR_FUNDO)
     container = tk.Frame(frame, bg=COR_FUNDO)
     container.place(relx=0.5, rely=0.5, anchor="center")

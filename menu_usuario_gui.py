@@ -8,6 +8,16 @@ COR_VERMELHO = "#E57373"
 menu = MenuSistema()
 
 def abrir_menu_usuario(email):
+    """Create and display a user menu interface using Tkinter.
+    Parameters:
+        - email (str): The email of the user, used for specific action callbacks related to the user's profile.
+    Returns:
+        - None: This function does not return a value. It initializes and runs the Tkinter main loop to display the user menu.
+    Processing Logic:
+        - Sets up a Tkinter window with predefined size, title, and background color.
+        - Configures a sidebar with options for viewing animals, requesting actions, editing the profile, and exiting.
+        - Buttons in the sidebar call specific functions with actions linked to the user's email.
+        - Arranges a central visual area in the window with a welcoming label."""
     root = tk.Tk()
     root.title("CuidaPet - Menu Principal")
     root.geometry("700x500")

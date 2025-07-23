@@ -7,6 +7,17 @@ COR_VERDE = "#A8D5BA"
 menu = MenuSistema()
 
 def criar_tela_pedidos(root, email, mostrar_tela_callback):
+    """Cria uma interface de usuário para exibir e gerenciar pedidos de usuários.
+Parâmetros:
+- root (tk.Tk): A janela pai onde a tela de pedidos será incorporada.
+- email (str): O e-mail do usuário usado para buscar pedidos específicos.
+- mostrar_tela_callback (callable): Função de retorno de chamada para navegar entre as telas da interface do usuário.
+    Retorna:
+- tk.Frame: O widget de quadro que contém os pedidos exibidos.
+Lógica de processamento:
+- Busca e lista todos os pedidos do usuário especificado por e-mail.
+- Exibe informações detalhadas de cada pedido, se houver.
+- Oferece a funcionalidade de remover um pedido com uma solicitação de confirmação."""
     from tkinter import messagebox
     frame_pedidos = tk.Frame(root, bg=COR_FUNDO)
 

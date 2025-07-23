@@ -18,6 +18,16 @@ def salvar_usuarios(lista):
         json.dump(lista, f, indent=2, ensure_ascii=False)
 
 def criar_tela_adm_usuarios(root, voltar_callback):
+    """Cria uma interface administrativa de usuário em um aplicativo GUI.
+Parâmetros:
+- root (tk.Widget): O widget raiz onde o quadro da interface do usuário será anexado.
+- voltar_callback (função): Função de retorno de chamada acionada para navegar de volta às telas ou menus anteriores.
+Retorna:
+- tk.Frame: O quadro criado contendo os elementos da interface do usuário para gerenciar usuários.
+    Lógica de processamento:
+- Exibe uma lista de usuários lendo de uma fonte de dados, `ler_usuarios()`, e permite a interação.
+- Fornece funcionalidade para excluir um usuário, com confirmação antes da exclusão, atualizando a lista de usuários após a ação.
+- Inclui um botão “Voltar” que navega para o menu definido pelo `voltar_callback`."""
     frame = tk.Frame(root, bg=COR_FUNDO)
     container = tk.Frame(frame, bg=COR_FUNDO)
     container.place(relx=0.5, rely=0.5, anchor="center")

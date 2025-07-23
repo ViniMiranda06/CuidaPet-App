@@ -18,6 +18,16 @@ def salvar_animais(lista):
         json.dump(lista, f, indent=2, ensure_ascii=False)
 
 def criar_tela_adm_tratamento(root, voltar_callback):
+    """Cria uma interface administrativa para gerenciar animais em tratamento em um aplicativo tkinter.
+Parâmetros:
+- root (tk.Widget): O widget tkinter raiz onde a interface de gerenciamento de tratamento será colocada.
+- voltar_callback (callable): Uma função de retorno de chamada acionada por botões de ação para alternar entre visualizações ou realizar ações.
+    Retorna:
+- tk.Frame: Um Frame tkinter contendo a interface de gerenciamento de tratamento.
+Lógica de processamento:
+- Lê uma lista de animais de uma fonte de dados e exibe cada animal em uma caixa rotulada.
+- Fornece um botão para remover animais da lista de tratamento, com solicitações de confirmação.
+- Inclui botões para adicionar novos animais ao tratamento e navegar de volta ao menu de administração."""
     frame = tk.Frame(root, bg=COR_FUNDO)
     container = tk.Frame(frame, bg=COR_FUNDO)
     container.place(relx=0.5, rely=0.5, anchor="center")

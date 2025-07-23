@@ -8,6 +8,16 @@ COR_VERDE = "#A8D5BA"
 menu = MenuSistema()
 
 def autenticar(email, senha):
+    """Autentica um usuário com e-mail e senha e inicie ações específicas do usuário.
+Parâmetros:
+- e-mail (str): O endereço de e-mail do usuário que está tentando fazer login.
+- senha (str): A senha correspondente ao endereço de e-mail do usuário.
+Retorna:
+- Nenhum: A função não retorna nenhum valor; ela aciona eventos da GUI após o resultado da autenticação.
+    Lógica de processamento:
+- A autenticação é tratada usando `menu.usuarios.autenticar_usuario()`.
+- Se a autenticação for bem-sucedida, uma mensagem de boas-vindas é exibida e a janela principal do aplicativo é fechada antes de prosseguir para a GUI específica do usuário.
+- Se a autenticação falhar, uma mensagem de erro é exibida."""
     usuario = menu.usuarios.autenticar_usuario(email, senha)
     if usuario:
         messagebox.showinfo("Login", f"Bem-vindo, {usuario['nome']}!")

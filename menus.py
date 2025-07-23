@@ -4,6 +4,15 @@ from pedido import Pedido, GerenciadorPedidos
 from editarperfil import EditorPerfil
 
 class MenuSistema:
+    """
+    Classe para gerenciar menus do sistema relacionados a usuários, animais e solicitações em um sistema de adoção e tratamento.
+    Parâmetros:
+- Nenhum: esta classe é inicializada sem parâmetros externos.
+Lógica de processamento:
+- Inicializa instâncias de gerenciadores de usuários, animais e solicitações para lidar com as respectivas operações.
+- Inclui recursos para registro de usuários, login, edição de perfis e gerenciamento de solicitações.
+- Oferece menus operacionais distintos para usuários regulares e administradores, aprimorando a interação do usuário e o gerenciamento do sistema.
+    """
     def __init__(self):
         self.usuarios = GerenciadorUsuarios()
         self.animais = GerenciadorAnimais()
@@ -12,6 +21,15 @@ class MenuSistema:
         self.pedidos = GerenciadorPedidos()
 
     def cadastrar_usuario(self):
+        """Regista um novo usuário com os detalhes fornecidos, caso o e-mail ainda não esteja em uso.
+Parâmetros:
+- Nenhum
+Retorna:
+- Nenhum
+Lógica de processamento:
+- Solicita ao usuário que insira os detalhes necessários para o registro, como nome, e-mail, senha, número de telefone e endereço.
+            - Verifica se o e-mail fornecido já está associado a um usuário existente. Se estiver, exibe uma mensagem indicando que o usuário já está registrado.
+- Se o e-mail não for encontrado no banco de dados, cria um novo objeto de usuário e o adiciona ao sistema, confirmando o registro bem-sucedido."""
         print("\n--- Cadastro de Usuário ---")
         nome = input("Nome: ")
         email = input("Email: ")
@@ -28,6 +46,16 @@ class MenuSistema:
             print("Usuário cadastrado com sucesso!")
 
     def login(self):
+        """Lida com o login e a autenticação do usuário.
+Parâmetros:
+- Nenhum: este método não aceita parâmetros.
+Retorna:
+- Nenhum: este método não retorna nenhum valor.
+Lógica de processamento:
+- Solicita ao usuário que insira seu e-mail e senha para autenticação.
+            - Utiliza o método “usuarios.autenticar_usuario” para verificar as credenciais.
+- Redireciona para o menu apropriado com base no tipo de usuário (“administrador” ou usuário regular).
+- Exibe uma mensagem de boas-vindas se a autenticação for bem-sucedida; caso contrário, exibe uma mensagem de erro para credenciais inválidas."""
         print("\n--- Login ---")
         email = input("Email: ")
         senha = input("Senha: ")
@@ -42,6 +70,15 @@ class MenuSistema:
             print("Credenciais inválidas.")
 
     def menu_usuario(self, email):
+        """Exibe e gerencia o menu do usuário para operações de adoção e solicitação de tratamento.
+Parâmetros:
+- e-mail (str): Endereço de e-mail do usuário para personalizar solicitações e edição de perfil.
+Retorna:
+- Nenhum
+Lógica de processamento:
+- Exibe continuamente o menu do usuário até que ele opte por sair.
+            - Lida com a entrada do usuário para navegar por diferentes opções para visualizar ou solicitar serviços relacionados a animais.
+- Suporta a edição do perfil do usuário e gerencia solicitações de adoção ou tratamento com o e-mail fornecido."""
         while True:
             print("\n--- Menu do Usuário ---")
             print("1. Ver animais para adoção")
@@ -70,6 +107,15 @@ class MenuSistema:
                 print("Opção inválida!")
 
     def menu_editar_perfil(self, email):
+        """Exibe um menu para editar as informações do perfil do usuário.
+Parâmetros:
+- e-mail (str): O e-mail atual do usuário cujo perfil será editado.
+Retorna:
+- Nenhum: Esta função não retorna nenhum valor; ela opera interativamente com o usuário.
+        Lógica de processamento:
+- Solicita continuamente ao usuário que edite as informações do perfil até que ele escolha “Voltar” (sair).
+- Atualiza campos específicos com base nas informações inseridas pelo usuário, como nome, e-mail, senha, telefone e endereço.
+- Valida as escolhas do usuário e trata entradas inválidas exibindo uma mensagem apropriada."""
         while True:
             print("\n--- Editar Perfil ---")
             print("1. Nome")
@@ -102,6 +148,15 @@ class MenuSistema:
                 print("Opção inválida!")
 
     def exibir_animais(self, tipo):
+        """Exibe uma lista de animais de um tipo específico.
+Parâmetros:
+- tipo (str): O tipo de animais a exibir (por exemplo, “mamíferos”, “répteis”).
+Retorna:
+- Nenhum: Esta função imprime o resultado diretamente.
+        Lógica de processamento:
+- Busca uma lista de animais de uma lista associada com base no tipo especificado.
+- Imprime uma lista formatada de animais, mostrando seu nome, espécie, raça e idade.
+- Indica se não há animais disponíveis do tipo especificado."""
         animais = self.animais.listar_animais(tipo)
         print(f"\n--- Animais para {tipo} ---")
         if not animais:
@@ -111,6 +166,15 @@ class MenuSistema:
                 print(f"Nome: {animal['nome']} | Espécie: {animal['especie']} | Raça: {animal['raca']} | Idade: {animal['idade']} anos")
 
     def menu_administrador(self):
+        """Fornece uma interface de menu para um administrador gerenciar registros de animais e visualizar solicitações.
+Parâmetros:
+- Nenhum
+Retorna:
+- Nenhum
+Lógica de processamento:
+- Exibe um menu com opções para registrar, remover animais, visualizar solicitações ou sair.
+            - Solicita continuamente a entrada do usuário até que a opção de sair seja selecionada.
+- Lida com ações com base na escolha do usuário, incluindo interação com os objetos “Animais” e “Pedidos”."""
         while True:
             print("\n--- Menu do Administrador ---")
             print("1. Cadastrar animal")

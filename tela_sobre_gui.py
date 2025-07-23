@@ -24,6 +24,17 @@ def salvar_feedback(email, texto):
 
 # 🖼️ Tela principal de "Sobre nós"
 def criar_tela_sobre(root, email, voltar_callback):
+    """Creates a 'Sobre' screen with buttons for navigating mission, contact, and returning to menu.
+    Parameters:
+        - root (tk.Tk or tk.Frame): The parent widget where this frame will be placed.
+        - email (str): The email associated with the user session, used in mission and feedback.
+        - voltar_callback (callable): Function to be called when the 'Voltar' button is clicked, usually to return to a previous menu.
+    Returns:
+        - tk.Frame: A frame containing the 'Sobre' interface for integration into the GUI.
+    Processing Logic:
+        - Configures buttons with specific text and dimensions.
+        - Packs buttons with appropriate spacing in the frame.
+        - Sets button commands using lambda functions to maintain user context and provide navigation."""
     frame = tk.Frame(root, bg=COR_FUNDO)
 
     container = tk.Frame(frame, bg=COR_FUNDO)
@@ -48,6 +59,16 @@ def criar_tela_sobre(root, email, voltar_callback):
 
 # 📄 Tela com texto da missão
 def abrir_missao(root, email, voltar_callback):
+    """Display a mission statement and contact information in a GUI window.
+    Parameters:
+        - root (tk.Widget): The root widget where the GUI frame will be placed.
+        - email (str): The contact email address, though not directly manipulated within this function.
+        - voltar_callback (function): Callback function to handle the "Voltar" button action.
+    Returns:
+        - None
+    Processing Logic:
+        - Displays a text message about the project's mission in a Tkinter Frame.
+        - Provides a "Voltar" button that triggers the 'voltar_callback' to navigate back to the menu."""
     frame = tk.Frame(root, bg=COR_FUNDO)
 
     container = tk.Frame(frame, bg=COR_FUNDO)
@@ -76,6 +97,18 @@ def abrir_missao(root, email, voltar_callback):
 
 # 📣 Tela de envio de feedback
 def abrir_feedback(root, email, voltar_callback):
+    """Open a feedback interface within a Tkinter application allowing users to send suggestions or questions.
+    Parameters:
+        - root (tk.Tk): The root window where the feedback frame will be placed.
+        - email (str): The email address associated with the feedback submission.
+        - voltar_callback (function): A callback function to navigate back to the previous menu.
+    Returns:
+        None
+    Processing Logic:
+        - A text area is provided for users to input their feedback.
+        - The 'Confirmar' button sends the feedback if the text area contains text.
+        - A message box informs the user whether the feedback sending was successful or warns if no text was entered.
+        - The 'Voltar' button navigates the user back to a menu using the provided callback function."""
     frame = tk.Frame(root, bg=COR_FUNDO)
 
     container = tk.Frame(frame, bg=COR_FUNDO)
@@ -87,6 +120,17 @@ def abrir_feedback(root, email, voltar_callback):
     campo.pack(pady=10)
 
     def enviar():
+        """Send user feedback after validation.
+        Parameters:
+            - None
+        Returns:
+            - None
+        Processing Logic:
+            - Retrieves text input starting from position "1.0" to "end" and removes surrounding whitespace.
+            - Validates that the text is not empty before proceeding with feedback submission.
+            - Saves the feedback using the 'salvar_feedback' function with the user email and text.
+            - Displays a success message on successful feedback submission.
+            - Redirects the user back to the menu using 'voltar_callback'. If the text is empty, it shows a warning message."""
         texto = campo.get("1.0", "end").strip()
         if texto:
             salvar_feedback(email, texto)
