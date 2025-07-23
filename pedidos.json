@@ -1,0 +1,22 @@
+[
+    {
+        "email": "igordv2k19@gmail.com",
+        "animal_id": 0,
+        "tipo": "adocao"
+    },
+    {
+        "email": "igordv2k19@gmail.com",
+        "animal_id": 0,
+        "tipo": "tratamento"
+    },
+    {
+        "email": "igordv2k19@gmail.com",
+        "animal_id": 1,
+        "tipo": "adocao"
+    },
+    {
+        "email": "igordv2k19@gmail.com",
+        "animal_id": 1,
+        "tipo": "tratamento"
+    }
+]

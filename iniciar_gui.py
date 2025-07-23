@@ -1,0 +1,1 @@
+from tela_inicial_gui import *  # Executa a interface gráfica inicial
