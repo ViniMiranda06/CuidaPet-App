@@ -24,8 +24,8 @@ Disponíveis no seguinte link do Google Drive:
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/ViniMiranda06/CuidaPet.git
-cd CuidaPet
+git clone https://github.com/ViniMiranda06/CuidaPet-App.git
+cd CuidaPet-App
 ```
 
 2. Execute o programa:
