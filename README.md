@@ -22,9 +22,6 @@ Disponíveis no seguinte link do Google Drive:
 | Módulo         | Função no Projeto                                                                 |
 |----------------|------------------------------------------------------------------------------------|
 | `os`           | Limpa o terminal com `os.system('cls' ou 'clear')` para manter o visual limpo     |
-| `random`       | Gera códigos aleatórios de verificação de 6 dígitos para autenticação              |
-| `smtplib`      | Conecta ao servidor SMTP do Gmail para envio de emails                            |
-| `email.message.EmailMessage` | Cria e formata a mensagem de email enviada ao usuário               |
   
 ### 💻 Estruturas utilizadas:
 
