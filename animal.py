@@ -3,16 +3,16 @@ import os
 
 class Animal:
     """
-    Represents an animal with specific characteristics and provides functionality to convert attributes into a dictionary format.
-    Parameters:
-        - nome (str): The name of the animal.
-        - especie (str): The species to which the animal belongs.
-        - idade (int): The age of the animal.
-        - raca (str): The breed of the animal, if applicable.
-        - descricao (str): A textual description or characteristic details of the animal.
-        - tipo (str): The type or classification of the animal, e.g., mammal, bird.
-    Processing Logic:
-        - Constructs an animal instance with the specified attributes.
+Representa um animal com características específicas e fornece funcionalidade para converter atributos em um formato de dicionário.
+Parâmetros:
+- nome (str): O nome do animal.
+- espécie (str): A espécie à qual o animal pertence.
+- idade (int): A idade do animal.
+- raça (str): A raça do animal, se aplicável.
+        - descrição (str): Uma descrição textual ou detalhes característicos do animal.
+- tipo (str): O tipo ou classificação do animal, por exemplo, mamífero, ave.
+Lógica de processamento:
+- Constrói uma instância de animal com os atributos especificados.
     """
     def __init__(self, nome, especie, idade, raca, descricao, tipo):
         self.nome = nome
@@ -23,14 +23,14 @@ class Animal:
         self.tipo = tipo  
 
     def to_dict(self):
-        """Converts instance attributes to a dictionary representation.
-        Parameters:
-            None
-        Returns:
-            - dict: A dictionary containing attribute names as keys and their values from the instance.
-        Processing Logic:
-            - Maps the instance's attributes to key-value pairs in the dictionary.
-            - Ensures all relevant attributes are included in the returned dictionary."""
+        """Converte os atributos da instância em uma representação de dicionário.
+Parâmetros:
+Nenhum
+Retorna:
+- dict: Um dicionário contendo nomes de atributos como chaves e seus valores da instância.
+Lógica de processamento:
+- Mapeia os atributos da instância para pares de chave-valor no dicionário.
+- Garante que todos os atributos relevantes sejam incluídos no dicionário retornado."""
         return {
             "nome": self.nome,
             "especie": self.especie,
@@ -42,14 +42,14 @@ class Animal:
 
 class GerenciadorAnimais:
     """
-    GerenciadorAnimais class facilitates the management of animal lists for adoption and treatment by handling data storage and retrieval.
-    Parameters:
-        - arquivo_adocao (str): File path for storing adoption animals' data.
-        - arquivo_tratamento (str): File path for storing treatment animals' data.
-    Processing Logic:
-        - Initializes with the given file paths and loads animal data from respective files.
-        - Supports adding, listing, removing, and searching animals in both adoption and treatment categories.
-        - Automatically saves changes to respective files upon modification (addition or removal of animals).
+    A classe GerenciadorAnimais facilita o gerenciamento de listas de animais para adoção e tratamento, lidando com o armazenamento e a recuperação de dados.
+Parâmetros:
+- arquivo_adocao (str): Caminho do arquivo para armazenar os dados dos animais para adoção.
+- arquivo_tratamento (str): Caminho do arquivo para armazenar os dados dos animais para tratamento.
+    Lógica de processamento:
+- Inicializa com os caminhos dos arquivos fornecidos e carrega os dados dos animais dos respectivos arquivos.
+- Suporta adição, listagem, remoção e pesquisa de animais nas categorias de adoção e tratamento.
+- Salva automaticamente as alterações nos respectivos arquivos após a modificação (adição ou remoção de animais).
     """
     def __init__(self, arquivo_adocao="animais_adocao.json", arquivo_tratamento="animais_tratamento.json"):
         self.arquivo_adocao = arquivo_adocao
@@ -87,17 +87,17 @@ class GerenciadorAnimais:
         return []
 
     def remover_animal(self, nome, tipo):
-        """Remove an animal from the designated list based on its name and type.
-        Parameters:
-            - nome (str): The name of the animal to be removed.
-            - tipo (str): The category of the animal list ('adocao' for adoption or 'tratamento' for treatment).
-        Returns:
-            - bool: True if the animal was successfully removed, False if no such animal exists.
-        Processing Logic:
-            - Determines the correct list (adoption or treatment) to search based on the 'tipo' parameter.
-            - Iterates through the list to find the first occurrence of an animal with the given 'nome'.
-            - Removes the identified animal from the list and saves changes.
-            - Returns boolean indicating success or failure of removal."""
+        """Remove um animal da lista designada com base em seu nome e tipo.
+Parâmetros:
+- nome (str): O nome do animal a ser removido.
+- tipo (str): A categoria da lista de animais (“adocação” para adoção ou “tratamento” para tratamento).
+        Retorna:
+- bool: Verdadeiro se o animal foi removido com sucesso, Falso se tal animal não existir.
+        Lógica de processamento:
+- Determina a lista correta (adoção ou tratamento) para pesquisar com base no parâmetro “tipo”.
+- Itera pela lista para encontrar a primeira ocorrência de um animal com o “nome” fornecido.
+- Remove o animal identificado da lista e salva as alterações.
+- Retorna um booleano indicando o sucesso ou a falha da remoção."""
         lista = self.animais_adocao if tipo == "adocao" else self.animais_tratamento
         for i, a in enumerate(lista):
             if a["nome"] == nome:
@@ -107,16 +107,16 @@ class GerenciadorAnimais:
         return False
     
     def buscar_animal_por_id(self, id_animal, tipo):
-        """Search for an animal by its ID within specified categories.
-        Parameters:
-            - id_animal (int): The unique identifier of the animal.
-            - tipo (str): The category of animal list to search in, either 'adocao' or 'tratamento'.
-        Returns:
-            - dict or None: Returns the animal's data as a dictionary if found; otherwise, returns None.
-        Processing Logic:
-            - The function iterates through the specified list of animals ('adocao' or 'tratamento').
-            - It checks if the animal's ID matches the provided `id_animal`.
-            - Returns the animal's data immediately upon finding a match."""
+        """Pesquise um animal pelo seu ID dentro das categorias especificadas.
+Parâmetros:
+- id_animal (int): O identificador único do animal.
+- tipo (str): A categoria da lista de animais a pesquisar, seja ‘adocao’ ou ‘tratamento’.
+Retorna:
+            - dict ou None: Retorna os dados do animal como um dicionário, se encontrado; caso contrário, retorna None.
+Lógica de processamento:
+- A função itera pela lista especificada de animais (“adocao” ou “tratamento”).
+- Ela verifica se o ID do animal corresponde ao `id_animal` fornecido.
+- Retorna os dados do animal imediatamente após encontrar uma correspondência."""
         if tipo == "adocao":
             for animal in self.animais_adocao:
                 if animal["id"] == id_animal:
