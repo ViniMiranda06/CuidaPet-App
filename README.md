@@ -44,8 +44,8 @@ Disponíveis no seguinte link do Google Drive:
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/ViniMiranda06/CuidaPet.git
-cd CuidaPet
+git clone https://github.com/ViniMiranda06/CuidaPet-App.git
+cd CuidaPet-App
 ```
 
 2. Execute o programa:
@@ -71,14 +71,15 @@ main.py
 
 👑 Funcionalidades para Administradores
 
-⚠️ Atenção: O acesso às funcionalidades administrativas é restrito e só pode ser feito por meio de um recurso secreto acessado após o login.
+⚠️ Atenção: O acesso às funcionalidades administrativas é restrito e só pode ser feito por meio de uma 'etiqueta' atribuida ao usuário.
 
 ## 🔐 Como acessar o menu administrativo:
-1. Faça login normalmente como qualquer usuário.
-
-2. No Menu Principal, digite 1703 como opção.
-
-3. Isso abrirá o Menu Administrativo, exclusivo para a equipe responsável.
+Será necessário ter a categoria "Administrador" atrelada ao seu usuário cadastrado. assim, ao abrir a aplicação abrirá diretamente no menu administrativo
+Para atribuir essa categória ao usuário você deve:
+1.localizar o usuário cadastrado no json correspondente ao armazenamento de cadastros
+2.verificar a situação do usuário (Deve estar descrito como 'usuário')
+3.Mudar para Administrador
+4.Salve e tente entrar novamente na aplicação!
 
 ## 🐾 Gestão de Animais
 -Cadastro de novos animais
@@ -90,6 +91,9 @@ main.py
     Após os pedidos serem enviados pelos usuários, o administrador poderá visualizá-los.
 
 -Aprovação ou rejeição das solicitações enviadas por usuários
+
+📄 Gerenciamento de Denúncias.
+-Recebe Denúncias relacionadas a maus tratos de animais, que serão posteriormente movidos para tratamento e adoção. fomentando o Resgate desses seres.
 
 ## 👨‍💻 Desenvolvedores
 - Vinícius De Oliveira
