@@ -39,6 +39,14 @@ main.py
 - Fazer um pedido de adoção:
     Permite que o usuário faça uma solitação de adoção de um pet, o pedido será enviado a equipe administrativa, que entrará em contato com quem fez o pedido
 
+-Realização de denúncias
+
+-atribuição de feedback
+
+-Visualização de animais para adoção
+
+-solicitação de adoção de um animal
+
 - Visualização de animais em tratamento
     Permite que o funcionário visualise os animais em tratamento, posteriormente haverá um patreon para os animais onde o usuário será redirecionado para o patreon
 
@@ -51,7 +59,7 @@ main.py
 
 👑 Funcionalidades para Administradores
 
-⚠️ Atenção: O acesso às funcionalidades administrativas é restrito e só pode ser feito por meio de um recurso secreto acessado após o login.
+⚠️ Atenção: O acesso às funcionalidades administrativas é restrito e só pode ser feito por meio de um recurso secreto.
 
 ## 🔐 Como acessar o menu administrativo:
 para fazer login na sessão ADM é necessário atribuir ao cadastrado o papel de Administrador
