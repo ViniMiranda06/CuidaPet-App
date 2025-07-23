@@ -2,6 +2,15 @@ import json
 import os
 
 class Pedido:
+    """
+    Representa um pedido relacionado a um animal, podendo ser de adoção ou tratamento.
+    Parameters:
+        - usuario_email (str): O endereço de e-mail do usuário que está fazendo o pedido.
+        - animal_nome (str): O nome do animal relacionado ao pedido.
+        - tipo (str): O tipo de pedido, que pode ser 'adocao' ou 'tratamento'.
+    Processing Logic:
+        - Converte a instância do pedido em um dicionário de atributos quando chamado o método to_dict.
+    """
     def __init__(self, usuario_email, animal_nome, tipo):
         self.usuario_email = usuario_email
         self.animal_nome = animal_nome
@@ -15,6 +24,15 @@ class Pedido:
         }
 
 class GerenciadorPedidos:
+    """
+    O GerenciadorPedidos gerencia os pedidos dos clientes e os armazena em um arquivo JSON.
+    Parâmetros:
+- arquivo (str): Caminho para o arquivo JSON onde os pedidos são armazenados. O padrão é “pedidos.json”.
+    Lógica de processamento:
+- Carrega os pedidos existentes do arquivo JSON especificado durante a inicialização.
+        - Salva os pedidos de volta no arquivo após modificações, como adições ou exclusões.
+- Oferece funcionalidade para adicionar, listar e remover pedidos com base em critérios determinados.
+    """
     def __init__(self, arquivo="pedidos.json"):
         self.arquivo = arquivo
         self.pedidos = self.carregar_pedidos()

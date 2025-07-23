@@ -2,6 +2,15 @@ from menus import MenuSistema
 
 
 def main():
+    """Loop principal para interagir com o menu do sistema Cuidapet.
+Parâmetros:
+Nenhum
+Retorna:
+Nenhum
+Lógica de processamento:
+- Apresenta continuamente um menu ao usuário até que ele opte por sair.
+- Lida com três opções: registro do usuário, login e saída do sistema.
+- Solicita entradas e executa os métodos de menu associados."""
     menu = MenuSistema()
 
     while True:

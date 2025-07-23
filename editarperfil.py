@@ -1,6 +1,15 @@
 from user import GerenciadorUsuarios
 
 class EditorPerfil:
+    """
+ A classe EditorPerfil é responsável por editar as informações do perfil do usuário.
+Parâmetros:
+- gerenciador_usuarios (GerenciadorUsuarios): Uma instância do GerenciadorUsuarios que gerencia os dados e as operações do usuário.
+Lógica de processamento:
+- Utiliza métodos da classe GerenciadorUsuarios para atualizar informações específicas do perfil de um usuário com base no e-mail do usuário.
+        - As operações de atualização incluem a modificação do nome, e-mail, senha, número de telefone e endereço do usuário.
+- As alterações são confirmadas invocando o método ‘editar_usuario’ da instância GerenciadorUsuarios.
+    """
     def __init__(self, gerenciador_usuarios: GerenciadorUsuarios):
         self.gerenciador = gerenciador_usuarios
 
