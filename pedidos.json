@@ -18,5 +18,15 @@
         "email": "igordv2k19@gmail.com",
         "animal_id": 1,
         "tipo": "tratamento"
+    },
+    {
+        "email": "teste@teste.com",
+        "animal_id": 0,
+        "tipo": "adocao"
+    },
+    {
+        "email": "teste@teste.com",
+        "animal_id": 0,
+        "tipo": "tratamento"
     }
 ]

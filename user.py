@@ -36,7 +36,10 @@ class GerenciadorUsuarios:
             json.dump(self.usuarios, f, indent=4)
 
     def adicionar_usuario(self, usuario):
-        self.usuarios.append(usuario.to_dict())
+        if isinstance(usuario, dict):  # Aceita tanto dicionário quanto objeto
+            self.usuarios.append(usuario)
+        else:
+            self.usuarios.append(usuario.to_dict())
         self.salvar_usuarios()
 
     def buscar_usuario_por_email(self, email):

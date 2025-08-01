@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
 from menus import MenuSistema
+from user import Usuario
 
 # Variáveis globais
 email_global = ""
@@ -248,21 +249,46 @@ for campo in ["Nome", "Email", "Senha", "Telefone", "Endereço"]:
     campos[campo.lower()] = entry
 
 def cadastrar():
-    email = campos["email"].get()
+    # Validações
+    nome = campos["nome"].get().strip()
+    email = campos["email"].get().strip()
+    senha = campos["senha"].get().strip()
+    telefone = campos["telefone"].get().strip()
+    endereco = campos["endereço"].get().strip()
+
+    if not nome:
+        messagebox.showerror("Erro", "Nome não pode ser vazio!")
+        return
+
+    if "@" not in email or "." not in email.split("@")[1]:
+        messagebox.showerror("Erro", "E-mail inválido!")
+        return
+
+    if len(senha) < 6:
+        messagebox.showerror("Erro", "Senha deve ter pelo menos 6 caracteres.")
+        return
+
+    if not telefone.isdigit() or len(telefone) != 11:
+        messagebox.showerror("Erro", "Telefone deve ter 11 dígitos numéricos.")
+        return
+
+    # Verifica se usuário já existe
     if menu.usuarios.buscar_usuario_por_email(email):
         messagebox.showerror("Erro", "Usuário já cadastrado!")
-    else:
-        novo_usuario = {
-            "nome": campos["nome"].get(),
-            "email": email,
-            "senha": campos["senha"].get(),
-            "telefone": campos["telefone"].get(),
-            "endereco": campos["endereço"].get(),
-            "tipo": "usuario"
-        }
-        menu.usuarios.adicionar_usuario(novo_usuario)
-        messagebox.showinfo("Cadastro", "Usuário cadastrado com sucesso!")
-        mostrar_tela("login")
+        return
+
+    # Cria objeto Usuario e cadastra
+    novo_usuario = Usuario(
+        nome=nome,
+        email=email,
+        senha=senha,
+        telefone=telefone,
+        endereco=endereco,
+        tipo="usuario"
+    )
+    menu.usuarios.adicionar_usuario(novo_usuario)
+    messagebox.showinfo("Sucesso", "Cadastro realizado com sucesso!")
+    mostrar_tela("login")
 
 tk.Button(frame_cadastro, text="Cadastre-se", font=("Arial", 14), bg=COR_VERDE, command=cadastrar).pack(pady=10)
 tk.Button(frame_cadastro, text="Voltar", font=("Arial", 12), command=lambda: mostrar_tela("inicial")).pack()

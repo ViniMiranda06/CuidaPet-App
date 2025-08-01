@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter import messagebox  
+
 
 # Paleta de cores CuidaPet Admin
 COR_FUNDO = "#F4EDE3"    # Bege claro de fundo
@@ -16,6 +18,12 @@ Lógica de processamento:
 - Inicializa uma barra lateral com botões para diferentes funções de administração.
 - Os botões são configurados com uma função de retorno de chamada para exibir telas de administração específicas.
 - A cor do botão muda para vermelho para a opção “Sair”."""
+
+    def confirmar_sair():
+        if messagebox.askyesno("Confirmar saída", "Deseja realmente sair?"):
+            root.destroy()
+
+
     frame_menu = tk.Frame(root, bg=COR_FUNDO)
 
     # Barra lateral de botões
@@ -29,8 +37,9 @@ Lógica de processamento:
     ("Usuários", lambda: mostrar_tela_callback("adm_usuarios")),
     ("Denúncias", lambda: mostrar_tela_callback("adm_denuncias")),
     ("Feedbacks", lambda: mostrar_tela_callback("adm_feedbacks")),
-    ("Sair", lambda: root.destroy())
+    ("Sair", confirmar_sair)
 ]
+
 
     for texto, acao in opcoes:
         cor_botao = "red" if texto == "Sair" else COR_MARROM

@@ -1,18 +1,26 @@
 [
-  {
-    "nome": "Igor Dias Vieira",
-    "email": "igordv2k19@gmail.com",
-    "senha": "POO",
-    "telefone": "81992227041",
-    "endereco": "rural",
-    "tipo": "usuario"
-  },
-  {
-    "nome": "Admin CuidaPet",
-    "email": "admin@cuidapet.com",
-    "senha": "admin123",
-    "telefone": "0000000000",
-    "endereco": "sede",
-    "tipo": "administrador"
-  }
+    {
+        "nome": "Igor Dias Vieira",
+        "email": "igordv2k19@gmail.com",
+        "senha": "POO",
+        "telefone": "81992227041",
+        "endereco": "rural",
+        "tipo": "usuario"
+    },
+    {
+        "nome": "Admin CuidaPet",
+        "email": "admin@cuidapet.com",
+        "senha": "admin123",
+        "telefone": "0000000000",
+        "endereco": "sede",
+        "tipo": "administrador"
+    },
+    {
+        "nome": "Igor teste",
+        "email": "teste@teste.com",
+        "senha": "senha123",
+        "telefone": "11999999999",
+        "endereco": "Rua bom jesus",
+        "tipo": "usuario"
+    }
 ]

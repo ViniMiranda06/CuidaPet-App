@@ -1,7 +1,8 @@
 import tkinter as tk
+from tkinter import messagebox
 from menus import MenuSistema
+from PIL import Image, ImageTk
 
-# Cores padrão do CuidaPet
 COR_FUNDO = "#F4EDE3"
 COR_VERDE = "#A8D5BA"
 COR_VERMELHO = "#E57373"
@@ -11,45 +12,73 @@ menu = MenuSistema()
 def criar_tela_menu_usuario(root, email, mostrar_tela_callback):
     frame_menu = tk.Frame(root, bg=COR_FUNDO)
 
-    # Barra lateral aumentada
+    def confirmar_sair():
+        if messagebox.askyesno("Confirmar saída", "Deseja realmente sair?"):
+            root.destroy()
+
+    # Barra lateral
     barra = tk.Frame(frame_menu, bg=COR_VERDE, width=160)
     barra.pack(side="left", fill="y")
 
-    # Botões grandes para funcionalidade
     opcoes = [
-    ("Animais em Adoção", lambda: mostrar_tela_callback("adocao")),
-    ("Animais em Tratamento", lambda: mostrar_tela_callback("tratamento")),
-    ("Meus Pedidos", lambda: mostrar_tela_callback("pedidos")),
-    ("Denúncia", lambda: mostrar_tela_callback("denuncia")),
-    ("Meu perfil", lambda: mostrar_tela_callback("perfil")),
-    ("Sobre nós", lambda: mostrar_tela_callback("sobre")),
-    ("Sair", lambda: root.destroy())
-]
+        ("Animais em Adoção", lambda: mostrar_tela_callback("adocao")),
+        ("Animais em Tratamento", lambda: mostrar_tela_callback("tratamento")),
+        ("Meus Pedidos", lambda: mostrar_tela_callback("pedidos")),
+        ("Denúncia", lambda: mostrar_tela_callback("denuncia")),
+        ("Meu perfil", lambda: mostrar_tela_callback("perfil")),
+        ("Sobre nós", lambda: mostrar_tela_callback("sobre")),
+    ]
 
     for texto, acao in opcoes:
-        cor_botao = COR_VERMELHO if texto == "Sair" else COR_VERDE
-        tk.Button(
-    barra,
-    text=texto,
-    font=("Arial", 12, "bold"),
-    wraplength=120,          # Permite quebra de linha
-    justify="center",        # Centraliza o texto dentro do botão
-    bg=cor_botao,
-    fg="black",
-    width=16,
-    height=4,                # Aumenta altura pra acomodar 2 linhas
-    command=acao
-).pack(pady=10)
+        btn = tk.Button(
+            barra,
+            text=texto,
+            font=("Arial", 12, "bold"),
+            wraplength=120,
+            justify="center",
+            bg=COR_VERDE,
+            fg="black",
+            width=16,
+            height=4,
+            command=acao
+        )
+        btn.pack(pady=10)
 
-    # Área central
+    tk.Button(
+        barra,
+        text="Sair",
+        font=("Arial", 12, "bold"),
+        wraplength=120,
+        justify="center",
+        bg=COR_VERMELHO,
+        fg="black",
+        width=16,
+        height=4,
+        command=confirmar_sair
+    ).pack(pady=10)
+
+    # Painel principal
     painel = tk.Frame(frame_menu, bg=COR_FUNDO)
     painel.pack(expand=True, fill="both")
 
+    # Topo com frase + logo centralizada
+    topo = tk.Frame(painel, bg=COR_FUNDO)
+    topo.pack(pady=30)
+
     tk.Label(
-        painel,
+        topo,
         text="O que você procura hoje?",
         font=("Helvetica", 22, "bold"),
         bg=COR_FUNDO
-    ).pack(pady=60)
+    ).pack(pady=(0, 20))
+
+    try:
+        imagem_logo = Image.open("logo.png").resize((300, 250))
+        logo = ImageTk.PhotoImage(imagem_logo)
+        logo_label = tk.Label(topo, image=logo, bg=COR_FUNDO)
+        logo_label.pack()
+        topo.logo_img = logo
+    except:
+        tk.Label(topo, text="🐾 CuidaPet", font=("Helvetica", 18), bg=COR_FUNDO).pack()
 
     return frame_menu

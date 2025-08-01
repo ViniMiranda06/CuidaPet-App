@@ -3,6 +3,8 @@ from tkinter import messagebox
 import json
 import os
 from tela_perfil_gui import buscar_dados_usuario
+from datetime import datetime  # Para registrar data/hora
+from tela_contato_autoridades import abrir_tela_contato_autoridades
 
 # 🎨 Cores padrão CuidaPet
 COR_FUNDO = "#F4EDE3"
@@ -17,35 +19,36 @@ def inicializar_arquivo():
 
 # 📥 Função para salvar denúncia
 def salvar_denuncia(email, nome, tipo, texto):
-    """Salva uma reclamação no banco de dados.
-Parâmetros:
-- email (str): O endereço de e-mail da pessoa que está fazendo a reclamação.
-- nome (str): O nome da pessoa que está fazendo a reclamação.
-- tipo (str): O tipo de reclamação que está sendo feita.
-- texto (str): O texto detalhado da reclamação.
-    Retorna:
-- Nenhum: Esta função não retorna um valor.
-Lógica de processamento:
-- Inicializa o arquivo JSON se ele não existir.
-- Determina o novo ID para a reclamação encontrando o ID máximo existente e adicionando 1.
-- Adiciona a nova reclamação à lista de reclamações existentes e as salva no arquivo."""
-    inicializar_arquivo()
-    with open(CAMINHO_DB, "r", encoding="utf-8") as f:
-        denuncias = json.load(f)
-
-    novo_id = max([d.get("id", 0) for d in denuncias], default=-1) + 1
-
+    # 1. Carrega denúncias existentes ou cria lista vazia
+    try:
+        with open("denuncias.json", "r", encoding="utf-8") as f:
+            denuncias = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        denuncias = []
+    
+    # 2. Cria nova denúncia com ID sequencial
     nova_denuncia = {
-        "id": novo_id,
+        "id": len(denuncias),  # ID simples baseado na posição
         "nome": nome,
         "email": email,
         "tipo": tipo,
-        "descricao": texto
+        "descricao": texto,
+        "data": datetime.now().strftime("%d/%m/%Y %H:%M"),
+        "status": "Recebida"
     }
-
+    
+    # 3. Adiciona e salva
     denuncias.append(nova_denuncia)
-    with open(CAMINHO_DB, "w", encoding="utf-8") as f:
+    with open("denuncias.json", "w", encoding="utf-8") as f:
         json.dump(denuncias, f, indent=2, ensure_ascii=False)
+
+def listar_denuncias_usuario(email):
+    try:
+        with open("denuncias.json", "r", encoding="utf-8") as f:
+            denuncias = json.load(f)
+            return [d for d in denuncias if d["email"] == email]
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
 
 # 🔍 Busca todas as denúncias do usuário
 def buscar_denuncia(email):
@@ -138,48 +141,28 @@ Lógica de processamento:
 
 # 📖 Tela de visualizar denúncias
 def abrir_tela_ver(root, email, voltar_callback):
-    """Exibe uma tela mostrando relatórios associados a um determinado e-mail.
-Parâmetros:
-- root (Tkinter Frame): O quadro raiz onde a exibição deve ser colocada.
-- email (str): O endereço de e-mail usado para buscar relatórios.
-- voltar_callback (função): Função de retorno de chamada a ser invocada quando o usuário quiser navegar de volta.
-    Retorna:
-- Nenhum
-Lógica de processamento:
-- Usa o parâmetro email para buscar relatórios associados.
-- Se houver relatórios, os exibe; caso contrário, informa ao usuário que não há relatórios disponíveis.
-- Contém um botão para retornar ao menu principal usando o callback fornecido."""
-    relatos = buscar_denuncia(email)
+    denuncias = listar_denuncias_usuario(email)
     frame = tk.Frame(root, bg=COR_FUNDO)
-    container = tk.Frame(frame, bg=COR_FUNDO)
-    container.place(relx=0.5, rely=0.5, anchor="center")
-
-    if relatos:
-        tk.Label(container, text="Suas denúncias:", font=("Helvetica", 16, "bold"), bg=COR_FUNDO).pack(pady=10)
-        for d in relatos:
-            txt = f"Tipo: {d['tipo']}\nDescrição: {d['descricao']}"
-            tk.Label(container, text=txt, font=("Arial", 11), bg=COR_FUNDO, wraplength=400, justify="left").pack(pady=10)
+    
+    if denuncias:
+        tk.Label(frame, text="Suas Denúncias:", font=("Helvetica", 16, "bold"), bg=COR_FUNDO).pack(pady=10)
+        for denuncia in denuncias:
+            texto = f"""Status: {denuncia['status']} | Data: {denuncia['data']}
+Tipo: {denuncia['tipo']}
+Descrição: {denuncia['descricao']}"""
+            tk.Label(frame, text=texto, bg=COR_FUNDO, justify="left", wraplength=400).pack(pady=10, padx=20)
     else:
-        tk.Label(container, text="Você ainda não realizou nenhuma denúncia.", font=("Arial", 12), bg=COR_FUNDO).pack(pady=30)
-
-    tk.Button(container, text="Voltar", font=("Arial", 12), bg=COR_VERDE,
-              width=20, height=2, command=lambda: voltar_callback("menu")).pack(pady=20)
-
+        tk.Label(frame, text="Nenhuma denúncia registrada.", bg=COR_FUNDO).pack(pady=30)
+    
+    tk.Button(frame, text="Voltar", command=lambda: voltar_callback("menu")).pack(pady=20)
+    
+    # Adicione estas linhas para exibir o frame corretamente:
     frame.place(x=0, y=0, relwidth=1, relheight=1)
     frame.tkraise()
+    return frame
 
 # 🧾 Tela principal de denúncias
 def criar_tela_denuncia(root, email, voltar_callback):
-    """Crie uma interface de tela de relatório.
-Parâmetros:
-- root (tk.Tk): A janela raiz onde a interface será anexada.
-- email (str): O endereço de e-mail do usuário, usado para operações contextuais.
-- voltar_callback (função): Uma função de retorno de chamada a ser executada quando o botão “Voltar” for clicado.
-    Retorna:
-- tk.Frame: O quadro que contém os elementos da interface.
-Lógica de processamento:
-- Inicializa um quadro com cor de fundo específica e o coloca no centro da janela raiz.
-- Adiciona um rótulo e três botões à interface, conectando-os às funções de comando apropriadas para diferentes ações."""
     frame = tk.Frame(root, bg=COR_FUNDO)
     container = tk.Frame(frame, bg=COR_FUNDO)
     container.place(relx=0.5, rely=0.5, anchor="center")
@@ -192,6 +175,12 @@ Lógica de processamento:
     tk.Button(container, text="Ver minhas denúncias", font=("Arial", 14, "bold"), bg=COR_VERDE,
               width=22, height=3, command=lambda: abrir_tela_ver(root, email, voltar_callback)).pack(pady=12)
 
+    # ☎️ Botão: Contatar autoridades legais — NOVO!
+    tk.Button(container, text="Contatar autoridades legais", font=("Arial", 14, "bold"), bg=COR_VERDE,
+          width=22, height=3,
+          command=lambda: abrir_tela_contato_autoridades(root, voltar_callback)).pack(pady=12)
+
+    # 🔙 Botão: Voltar
     tk.Button(container, text="Voltar", font=("Arial", 12), bg=COR_VERDE,
               width=20, height=2, command=lambda: voltar_callback("menu")).pack(pady=30)
 

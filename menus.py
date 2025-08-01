@@ -102,7 +102,10 @@ Lógica de processamento:
             elif opcao == "5":
                 self.menu_editar_perfil(email)
             elif opcao == "6":
-                break
+                confirmar = input("Tem certeza que deseja sair? (s/N): ").strip().lower()
+                if confirmar in ("s", "sim"):
+                    break
+
             else:
                 print("Opção inválida!")
 
@@ -208,6 +211,9 @@ Lógica de processamento:
                     print(f"Usuário: {p['usuario_email']} | Animal: {p['animal_nome']} | Tipo: {p['tipo']}")
 
             elif escolha == "4":
-                break
+                confirmar = input("Tem certeza que deseja sair? (s/N): ").strip().lower()
+                if confirmar in ("s", "sim"):
+                    break
+
             else:
                 print("Opção inválida!")
