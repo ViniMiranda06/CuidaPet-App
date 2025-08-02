@@ -10,6 +10,15 @@ CAMINHO_DB = "usuarios.json"
 
 # 🧾 Localiza dados do usuário
 def buscar_dados_usuario(email):
+    """Pesquisa dados do usuário com base no endereço de e-mail.
+Parâmetros:
+- e-mail (str): O endereço de e-mail do usuário a ser pesquisado no banco de dados.
+    Retorna:
+- dict ou None: Um dicionário contendo os dados do usuário, se o e-mail for encontrado; caso contrário, None.
+Lógica de processamento:
+- Verifica se o arquivo do banco de dados existe antes de tentar qualquer operação.
+- Carrega os dados do usuário do arquivo JSON.
+- Itera pelos registros do usuário para encontrar um e-mail correspondente."""
     if not os.path.exists(CAMINHO_DB):
         return None
     with open(CAMINHO_DB, "r", encoding="utf-8") as f:
@@ -21,6 +30,16 @@ def buscar_dados_usuario(email):
 
 # ✏️ Atualiza dados no arquivo
 def atualizar_dados_usuario(email, novos_dados):
+    """Atualiza os dados do usuário com base em seu e-mail.
+Parâmetros:
+- e-mail (str): O e-mail do usuário cujos dados precisam ser atualizados.
+- novos_dados (dict): Um dicionário com pares chave-valor para os novos dados a serem atualizados.
+Retorna:
+- Nenhum: Esta função não retorna um valor.
+    Lógica de processamento:
+- Lê os dados existentes do usuário a partir de um arquivo JSON.
+- Procura o usuário pelo e-mail e atualiza seus dados com os valores fornecidos.
+- Grava os dados atualizados do usuário de volta no arquivo JSON."""
     with open(CAMINHO_DB, "r", encoding="utf-8") as f:
         lista = json.load(f)
     for u in lista:
@@ -40,6 +59,18 @@ def excluir_usuario(email):
 
 # 🖼️ Tela principal de perfil
 def criar_tela_perfil(root, email, voltar_callback):
+    """Cria uma interface de tela de perfil dentro de uma determinada janela raiz.
+Parâmetros:
+- root (tk.Tk ou tk.Widget): A janela principal do aplicativo ou widget pai onde a tela de perfil será colocada.
+- email (str): O e-mail do usuário, usado para buscar e exibir dados relevantes do perfil.
+        - voltar_callback (callable): Uma função de retorno de chamada a ser executada ao retornar ao menu anterior.
+Retorna:
+- tk.Frame: Um quadro contendo os elementos da interface do perfil do usuário, pronto para ser exibido na janela raiz.
+Lógica de processamento:
+- A tela de perfil é centralizada vertical e horizontalmente dentro da janela raiz.
+        - Uma etiqueta exibindo “Meu Perfil” é incluída na parte superior da interface.
+- Um botão “Ver meus dados” é fornecido para permitir que os usuários visualizem seus dados, chamando uma função com os parâmetros necessários.
+- Um botão “Voltar” é fornecido para retornar ao menu, utilizando a função de retorno de chamada fornecida."""
     frame = tk.Frame(root, bg=COR_FUNDO)
 
     container = tk.Frame(frame, bg=COR_FUNDO)
@@ -57,6 +88,18 @@ def criar_tela_perfil(root, email, voltar_callback):
 
 # 🗂️ Tela de visualização de dados
 def abrir_tela_dados(root, email, voltar_callback):
+    """Exibe a tela de dados do usuário com opções para edição e exclusão em um aplicativo Tkinter.
+Parâmetros:
+- root (widget Tkinter): A janela raiz ou widget pai onde o quadro será colocado.
+- email (str): O e-mail do usuário cujos dados devem ser recuperados e exibidos.
+        - voltar_callback (função): Uma função de retorno de chamada acionada quando o botão “Voltar” é pressionado.
+Retorna:
+- Nenhum: Esta função não retorna um valor; ela modifica a interface do usuário adicionando componentes ao quadro Tkinter.
+    Lógica de processamento:
+- Recupera os dados do usuário com base no e-mail fornecido e os exibe, se disponíveis.
+- Renderiza um botão para facilitar a edição dos dados do usuário, que abre outra tela.
+- Oferece uma opção para excluir a conta do usuário, com confirmação, removendo os dados associados.
+- Inclui um botão para navegar de volta à tela do menu por meio do callback fornecido."""
     dados = buscar_dados_usuario(email)
     frame = tk.Frame(root, bg=COR_FUNDO)
 
@@ -95,6 +138,18 @@ def abrir_tela_dados(root, email, voltar_callback):
 
 # ✏️ Tela de edição de dados
 def abrir_tela_edicao(root, email, voltar_callback):
+    """Open an edit screen so that the user can update their personal information.
+Parameters:
+- root (tk.Tk or tk.Widget): The root of the window or widget where the frame will be created.
+- email (str): The user's email address for searching and updating data.
+        - back_callback (function): Callback to be called when clicking the back button, which navigates to a different screen.
+    Returns:
+- None: The function does not return a value.
+    Processing Logic:
+- Creates a frame within the root to display the input fields and buttons.
+        - Initializes the input fields with the user data obtained from the email provided.
+- When the “Confirm” button is pressed, updates the user information and displays a confirmation message.
+- When the “Back” button is pressed, executes the callback function to return to the menu screen."""
     dados = buscar_dados_usuario(email)
     frame = tk.Frame(root, bg=COR_FUNDO)
 

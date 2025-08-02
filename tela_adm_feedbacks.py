@@ -27,6 +27,16 @@ def salvar_feedbacks(lista):
 
 # 🖼️ Tela principal
 def criar_tela_adm_feedbacks(root, voltar_callback):
+    """Cria uma interface de janela de feedback do administrador.
+    Parâmetros:
+        - root (tkinter.Tk ou tkinter.Widget): O elemento Tkinter pai no qual a interface de feedback será criada.
+        - voltar_callback (função): Função a ser chamada quando o botão 'Voltar' é pressionado, normalmente para navegar de volta ao menu anterior.
+    Retornos:
+        - tkinter.Frame: Um objeto Tkinter Frame que contém toda a interface de feedback.
+    Lógica de processamento:
+        - Lê os feedbacks usando a função «ler_feedbacks» para obter uma lista.
+        - Exibe feedbacks em caixas rotuladas com um prompt para exclusão, implementando a confirmação antes da exclusão.
+        - Fornece um botão 'Voltar' para navegar de volta ao menu do administrador usando `voltar_callback’."""
     frame = tk.Frame(root, bg=COR_FUNDO)
     container = tk.Frame(frame, bg=COR_FUNDO)
     container.place(relx=0.5, rely=0.5, anchor="center")
