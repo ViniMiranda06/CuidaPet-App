@@ -23,7 +23,7 @@ class Usuario:
         self.tipo = tipo  
 
     def to_dict(self):
-        """Converta os atributos do objeto em uma representação de dicionário.
+        """Converte os atributos do objeto em uma representação de dicionário.
         Parâmetros:
             -None: Este método não leva nenhum parâmetro externo.
         Retornos:
