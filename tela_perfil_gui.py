@@ -138,18 +138,18 @@ Retorna:
 
 # ✏️ Tela de edição de dados
 def abrir_tela_edicao(root, email, voltar_callback):
-    """Open an edit screen so that the user can update their personal information.
-Parameters:
-- root (tk.Tk or tk.Widget): The root of the window or widget where the frame will be created.
-- email (str): The user's email address for searching and updating data.
-        - back_callback (function): Callback to be called when clicking the back button, which navigates to a different screen.
-    Returns:
-- None: The function does not return a value.
-    Processing Logic:
-- Creates a frame within the root to display the input fields and buttons.
-        - Initializes the input fields with the user data obtained from the email provided.
-- When the “Confirm” button is pressed, updates the user information and displays a confirmation message.
-- When the “Back” button is pressed, executes the callback function to return to the menu screen."""
+    """Abra uma tela de edição para que o usuário possa atualizar suas informações pessoais.
+Parâmetros:
+- root (tk.Tk ou tk.Widget): A raiz da janela ou widget onde o quadro será criado.
+- email (str): O endereço de e-mail do usuário para pesquisa e atualização de dados.
+        - back_callback (função): Callback a ser chamado ao clicar no botão voltar, que navega para uma tela diferente.
+    Retornos:
+- None: A função não retorna um valor.
+    Lógica de processamento:
+- Cria um quadro dentro da raiz para exibir os campos de entrada e botões.
+        - Inicializa os campos de entrada com os dados do usuário obtidos a partir do e-mail fornecido.
+- Quando o botão "Confirmar" é pressionado, atualiza as informações do usuário e exibe uma mensagem de confirmação.
+- Quando o botão "Voltar" é pressionado, executa a função de retorno para retornar à tela do menu."""
     dados = buscar_dados_usuario(email)
     frame = tk.Frame(root, bg=COR_FUNDO)
 
