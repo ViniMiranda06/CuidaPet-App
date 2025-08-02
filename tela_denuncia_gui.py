@@ -20,6 +20,18 @@ def inicializar_arquivo():
 # 📥 Função para salvar denúncia
 def salvar_denuncia(email, nome, tipo, texto):
     # 1. Carrega denúncias existentes ou cria lista vazia
+    """Salve um relatório com os detalhes do usuário fornecidos em um arquivo JSON.
+    Parâmetros:
+        - e-mail (str): endereço de e-mail da pessoa que envia o relatório.
+        - nome (str): Nome da pessoa que envia o relatório.
+        - tipo (str): Tipo ou categoria do relatório.
+        - texto (str): Descrição textual do relatório.
+    Retornos:
+        -None: Esta função não retorna um valor.
+    Lógica de processamento:
+        - Carrega relatórios existentes de 'denuncias.json' ou inicializa uma nova lista se o arquivo não existir ou estiver corrompido.
+        - Cria uma nova entrada de relatório com um ID incremental e timestamp atual.
+        - Anexa o novo relatório à lista existente e salva-lo de volta para 'denuncias.json'."""
     try:
         with open("denuncias.json", "r", encoding="utf-8") as f:
             denuncias = json.load(f)
@@ -141,6 +153,18 @@ Lógica de processamento:
 
 # 📖 Tela de visualizar denúncias
 def abrir_tela_ver(root, email, voltar_callback):
+    """Abra uma tela de UI para exibir relatórios do usuário.
+    Parâmetros:
+        - root (tk.Tk): A janela raiz ou o widget principal pai.
+        - email (str): O identificador de e-mail para o usuário cujos relatórios serão exibidos.
+        - voltar_callback (função): Uma função de retorno acionada quando o botão 'Voltar' é pressionado.
+    Retornos:
+        - tk.Frame: O quadro que contém o relatório exibe elementos da interface do usuário.
+    Lógica de processamento:
+        - Recupera e lista todos os relatórios associados ao email do usuário.
+        - Se os relatórios existirem, eles são exibidos com detalhes como status, data, tipo e descrição.
+        - Se nenhum relatório for encontrado, uma mensagem indicando que não há relatórios registrados é mostrada.
+        - Adiciona um botão 'Voltar' que chama a função callback fornecida com "menu" como argumento."""
     denuncias = listar_denuncias_usuario(email)
     frame = tk.Frame(root, bg=COR_FUNDO)
     
@@ -163,6 +187,17 @@ Descrição: {denuncia['descricao']}"""
 
 # 🧾 Tela principal de denúncias
 def criar_tela_denuncia(root, email, voltar_callback):
+    """Crie uma interface de reclamação dentro do widget root usando o Tkinter.
+    Parâmetros:
+        - root (tk.Tk ou tk.Frame): O widget pai onde o quadro será colocado.
+        - email (str): e-mail do usuário para gerenciar as funcionalidades de reclamação.
+        - voltar_callback (chamável): função de retorno para lidar com ações de navegação.
+    Retornos:
+        - tk.Frame: Um widget de quadro contendo os elementos da interface de reclamação.
+    Lógica de processamento:
+        - Inclui um recipiente principal para as opções de reclamação.
+        - Fornece botões para criar e visualizar reclamações, entrar em contato com autoridades legais e navegar de volta.
+        - Comandos para botões usam funções lambda para passar parâmetros necessários."""
     frame = tk.Frame(root, bg=COR_FUNDO)
     container = tk.Frame(frame, bg=COR_FUNDO)
     container.place(relx=0.5, rely=0.5, anchor="center")

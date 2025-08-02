@@ -10,6 +10,17 @@ COR_VERMELHO = "#E57373"
 menu = MenuSistema()
 
 def criar_tela_menu_usuario(root, email, mostrar_tela_callback):
+    """Cria uma interface de menu do usuário dentro de uma determinada janela raiz tkinter.
+Parâmetros:
+- raiz (tk.Tk): A janela pai tkinter onde o quadro do menu será anexado.
+        - email (str): O e-mail do usuário, que pode ser usado para personalizar a interface.
+- mostrar_tela_callback (função): Uma função de retorno de chamada que lida com a lógica de exibição para diferentes opções de tela dentro do menu.
+Retorna:
+- tk.Frame: Um widget tkinter Frame contendo o layout e a lógica completos do menu.
+    Lógica de processamento:
+- Constrói uma barra lateral com botões que representam diferentes opções, cada um conectado ao `mostrar_tela_callback`.
+- Inclui uma caixa de diálogo de confirmação para o botão Sair para verificar a intenção do usuário antes de fechar o aplicativo.
+- Tenta carregar e exibir uma imagem de logotipo; recorre a uma exibição de texto se o carregamento da imagem falhar."""
     frame_menu = tk.Frame(root, bg=COR_FUNDO)
 
     def confirmar_sair():

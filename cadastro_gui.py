@@ -11,6 +11,23 @@ menu = MenuSistema()
 
 # 🧠 Função de cadastro com validações
 def cadastrar_usuario(nome, email, senha, confirmar_senha, telefone, endereco):
+    """Registre um novo usuário com os detalhes fornecidos após validar os campos de entrada.
+Parâmetros:
+- nome (str): O nome do usuário, obrigatório e não pode estar vazio.
+- email (str): O e-mail do usuário, obrigatório e deve estar em um formato válido.
+- senha (str): A senha do usuário, obrigatória e deve ter pelo menos 6 caracteres.
+        - confirmar_senha (str): Confirmação da senha do usuário, deve corresponder a ‘senha’.
+- telefone (str): O número de telefone do usuário, deve ter 11 dígitos numéricos.
+- endereco (str): O endereço do usuário, obrigatório para o registro.
+    Retorna:
+- Nenhum: exibe uma mensagem de sucesso ou erro com base na validação e no status do registro.
+Lógica de processamento:
+- Valida se o “nome” não está vazio.
+- Verifica se o “e-mail” contém um “@” e uma parte de domínio válida.
+- Garante que a “senha” tenha um comprimento mínimo de 6 caracteres.
+        - Confirma se “senha” e “confirmar_senha” correspondem.
+- Valida “telefone” como uma string numérica de 11 dígitos.
+- Verifica se existem usuários com o “email” fornecido."""
     if not nome.strip():
         messagebox.showerror("Erro", "Nome não pode ser vazio!")
         return

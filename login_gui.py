@@ -51,6 +51,16 @@ btn_mostrar_senha = tk.Button(
 btn_mostrar_senha.pack(side="left", padx=5)
 
 def autenticar():
+    """Autentica um usuário com base no e-mail e senha fornecidos.
+    Parâmetros:
+        - Nenhum
+    Retorna:
+        - Nenhum
+    Lógica de processamento:
+        - Recupera o e-mail e a senha dos campos de entrada.
+        - Chama autenticar_usuario para verificar as credenciais.
+        - Se a autenticação for bem-sucedida, exibe uma mensagem de boas-vindas e navega até o menu do usuário.
+        - Exibe uma mensagem de erro se a autenticação falhar."""
     email = entry_email.get()
     senha = entry_senha.get()
     usuario = menu.usuarios.autenticar_usuario(email, senha)

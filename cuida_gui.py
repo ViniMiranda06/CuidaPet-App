@@ -43,6 +43,15 @@ except:
 
 # 🔁 Função para trocar de tela
 def mostrar_tela(nome):
+    """Mostrar a tela do aplicativo específico com base no nome de tela fornecido.
+    Parâmetros:
+        - nome (str): O nome da tela a ser exibida. Pode ser um dos nomes de tela predefinidos, como "inicial", "login", "cadastro", etc.
+    Retornos:
+        - None: Esta função não retorna um valor; ela muda o estado da tela.
+    Lógica de processamento:
+        - Chama `tkraise()` nos quadros existentes para trazê-los para a frente.
+        - Cria dinamicamente certos quadros se eles não existirem e, em seguida, levanta-os.
+        - Imprime uma mensagem de depuração se o quadro "denuncia" não tiver sido criado."""
     if nome == "inicial":
         tela_inicial.tkraise()
     elif nome == "login":
@@ -164,6 +173,16 @@ entry_senha = tk.Entry(frame_login, font=("Arial", 12), width=30, show="*")
 entry_senha.pack(pady=5)
 
 def autenticar():
+    """Autenticar um usuário usando e-mail e senha, exibindo interface de usuário apropriada com base no tipo de usuário.
+    Parâmetros:
+        -None: A função não toma nenhum parâmetro diretamente, mas recupera o e-mail e a senha das entradas da GUI.
+    Retornos:
+        -None: Esta função não retorna nada, mas atualiza o estado da GUI do aplicativo com base no resultado de autenticação.
+    Lógica de processamento:
+        - Recupera e-mail e senha de campos de entrada e tira espaço em branco.
+        - Chama a função externa 'autenticar_usuario' para verificar credenciais.
+        - Utiliza 'messagebox' para mostrar mensagens de erro ou sucesso.
+        - Inicializa e exibe diferentes quadros de interface do usuário para 'administrador' ou 'usuário' regular após o login bem-sucedido."""
     email = entry_email.get().strip()
     senha = entry_senha.get().strip()
     resultado = menu.usuarios.autenticar_usuario(email, senha)
@@ -250,6 +269,17 @@ for campo in ["Nome", "Email", "Senha", "Telefone", "Endereço"]:
 
 def cadastrar():
     # Validações
+    """Registra um novo usuário com as informações fornecidas após a validação.
+    Parâmetros:
+        Nenhum
+    Retornos:
+        Nenhum
+    Lógica de processamento:
+        - Valida que 'nome' não está vazio.
+        - Verifica o formato 'email' para garantir que contém "@" e um domínio válido.
+        - Garante que 'senha' tem pelo menos 6 caracteres de comprimento.
+        - Valida 'telefone' é uma string numérica com exatamente 11 dígitos.
+        - Verifica se o usuário já existe no sistema pelo seu email."""
     nome = campos["nome"].get().strip()
     email = campos["email"].get().strip()
     senha = campos["senha"].get().strip()
